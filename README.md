@@ -1,27 +1,52 @@
-# Prophet + Quantum ML + QAOA on ETF data — a pre-registered, honest benchmark
+# Prophet + Quantum ML + QAOA on stock data — a pre-registered, honest benchmark
 
-**IQ Hackathon Fall 2026 (Beginners)** · Team / author: ______________________
+**IQ Hackathon Fall 2026 (Beginners)**
 
-## Summary for judges
+## Submission information
 
-We took the three Training Session II notebooks (quantum kernels / VQC, QAOA, the variational
-loop) and asked one practical question: **do they help predict and trade ETFs, compared with
-ordinary classical methods given the same data?** Prophet (Meta's forecaster) supplies the
-features. Every test was **written down and hashed before any result existed**, run walk-forward
-on 2014-2026 with no look-ahead, and every quantum simulator was checked against Qiskit to
-machine precision.
+| | |
+|---|---|
+| Group name | ⟨fill in⟩ |
+| Members (name · affiliation · department · career level) | Sunghoon Park · ⟨affiliation⟩ · ⟨department⟩ · ⟨career level⟩ |
+| Submission category | ⟨Rising-star / Champion⟩ |
+| Track | **Quantum Machine Learning** (primary), with a **QAOA** extension |
+| Notebook | [`quantum_prophet_stocks.ipynb`](quantum_prophet_stocks.ipynb) — first cell installs every package |
+
+## What we did (summary)
+
+* Built monthly features for 18 ETFs from **Prophet** forecasts plus momentum/volatility, and compared
+  a **4-qubit quantum-kernel SVM (QSVM)** and a **variational quantum classifier (VQC)** against RBF-SVM
+  and logistic regression for "which ETFs beat the median next month" (walk-forward, 2014-2026).
+* Used **QAOA** (18 qubits) to pick a monthly 4-ETF mean-variance portfolio from a QUBO and compared it
+  with brute force and random sampling; repeated with **9 sector ETFs (9 qubits)**.
+* Tried a **self-improvement loop** for Prophet (QAOA-driven configuration search + kernel residual boosting).
+* Extended to **regime prediction** (volatility, bull/bear, risk-on/off) and to **POMDP / GRPO** agents.
+* Applied the same tools to **turnaround stocks**: 5,124 S&P 500 stock-months ≥ 40 % below their 52-week
+  high, 8-qubit QSVM / VQC, and a 12-qubit QAOA diversified pick ([`turnaround/`](turnaround/REPORT.md)).
+* Verified every simulator against Qiskit, **pre-registered** every hypothesis before computing it, and
+  checked each result with shuffled-label and planted-signal controls.
+
+## Motivation
+
+The training notebooks show quantum kernels and QAOA on textbook data (the `ad_hoc` dataset, a 5-node
+max-cut). We wanted to know what happens on a noisy, real problem people care about — stock selection —
+when the quantum methods get exactly the same data, features and tuning budget as standard classical
+methods, and when the evaluation cannot be tuned after seeing the results.
+
+## Summary of findings
 
 **Answer: not on this problem.** In none of the comparisons did a quantum method beat its classical
 counterpart, and Prophet's forecast carried no cross-sectional information one month ahead.
 A self-improvement loop did make Prophet more accurate, but the classical version of the same loop
 did better, and simply forecasting 0 % beat every Prophet variant. Volatility regimes *are*
-predictable, but plain "this month's state persists" was as good as any model.
-We think a clean, reproducible negative result with working quantum pipelines is more useful
-than an unverified "quantum advantage" headline.
+predictable, but plain "this month's state persists" was as good as any model. For turnaround stocks
+a weak signal exists, yet the simplest rule (stocks already rebounding off their 52-week low) beat every
+learned model, quantum or classical. We think a clean, reproducible negative result with working
+quantum pipelines is more useful than an unverified "quantum advantage" headline.
 
 ![classifiers](figures/fig_stock_classifiers.png)
 
-## What we built
+## Workflow
 
 ```
 daily closes (18 ETFs, 2005-2026, frozen + sha256)
@@ -107,6 +132,16 @@ look-ahead checks pass. What it shows is that most volatility-regime skill is ma
 * **GRPO:** 52.0 % accuracy (5 seeds: 51.0-52.9 %). Its shuffled-reward twin scores 50.6 %, a difference
   of p = 0.21, so there is no evidence it learned beyond the control. Sharpe 0.79.
 * Nothing beats the equal-weight portfolio (Sharpe 0.88).
+
+### Turnaround stocks (S&P 500, 8 and 12 qubits) — details in [`turnaround/REPORT.md`](turnaround/REPORT.md)
+
+![turnaround](turnaround/figures/fig_turnaround.png)
+
+* 2,232 test candidates (stocks ≥ 40 % below their 52-week high), 138 months; label = next-6-month return beats SPY.
+* QSVM AUC 0.549 vs RBF 0.538 (difference CI [−0.003, +0.026] includes 0); QSVM's top-4 picks are 0.7 pt worse
+  (p = 0.61). VQC is at chance (0.502). Best: the plain "furthest off the 52-week low" rule (AUC 0.575).
+* 12-qubit QAOA never found the diversified optimum in 16 shots (0/59 months vs 3.2 % random).
+* Survivorship bias (today's index members only) inflates absolute returns; comparisons are like-for-like.
 
 ### Live forecast (2026-10-23 close) — not investment advice
 

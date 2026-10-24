@@ -27,6 +27,13 @@ Heavy runs live in the `run_*.py` scripts; this notebook loads their results and
 re-runs small pieces live. *Paper backtest only — not investment advice.*
 """)
 code("""
+# Install every package this notebook needs (fresh environment or Google Colab).
+# In Colab, first get the code and data:
+#   !git clone https://github.com/Futuremine97/IQ_Hackathon_Fall_2026.git
+#   %cd IQ_Hackathon_Fall_2026
+%pip install -q -r requirements.txt
+""")
+code("""
 import json, os, numpy as np, pandas as pd, matplotlib.pyplot as plt
 import logging; [logging.getLogger(n).setLevel(logging.ERROR) for n in ("cmdstanpy", "prophet")]
 from qps.data import load_prices, UNIVERSE
