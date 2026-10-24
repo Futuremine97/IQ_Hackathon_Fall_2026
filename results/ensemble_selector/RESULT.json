@@ -1,0 +1,234 @@
+{
+  "protocol_sha256": "bcc82638559d45bb47a9cefe8618cf91f518bf23d61ad24d26b5381879393479",
+  "input_scores_sha256": "92462196cc18e5ade280f8ec618eacaaa2bbf3aeb73465a564db43ba6638cbb7",
+  "exploratory": true,
+  "simulation_only": true,
+  "qubits": 4,
+  "n_pairs": 15,
+  "n_dev_months": 36,
+  "n_eval_months": 92,
+  "eval_start": "2019-01-31",
+  "eval_end": "2026-08-31",
+  "selected_hyperparameters": {
+    "quantum": [
+      0.3,
+      0.01
+    ],
+    "rbf": [
+      1.0,
+      0.1
+    ]
+  },
+  "tuning": [
+    {
+      "kind": "quantum",
+      "hp": [
+        0.1,
+        0.01
+      ],
+      "dev_brier": 0.2852866369455876
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        0.1,
+        0.1
+      ],
+      "dev_brier": 0.28903511278768484
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        0.1,
+        1.0
+      ],
+      "dev_brier": 0.2887040847431794
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        0.3,
+        0.01
+      ],
+      "dev_brier": 0.28300516308489565
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        0.3,
+        0.1
+      ],
+      "dev_brier": 0.2855343126047859
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        0.3,
+        1.0
+      ],
+      "dev_brier": 0.2848865454961134
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        1.0,
+        0.01
+      ],
+      "dev_brier": 0.2952674897119342
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        1.0,
+        0.1
+      ],
+      "dev_brier": 0.2958890603566529
+    },
+    {
+      "kind": "quantum",
+      "hp": [
+        1.0,
+        1.0
+      ],
+      "dev_brier": 0.2996780216430422
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        0.1,
+        0.01
+      ],
+      "dev_brier": 0.28854214296601133
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        0.1,
+        0.1
+      ],
+      "dev_brier": 0.2889922458466697
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        0.1,
+        1.0
+      ],
+      "dev_brier": 0.2880801326017375
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        1.0,
+        0.01
+      ],
+      "dev_brier": 0.2866869570187472
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        1.0,
+        0.1
+      ],
+      "dev_brier": 0.28284083981100444
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        1.0,
+        1.0
+      ],
+      "dev_brier": 0.2873942615454961
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        10.0,
+        0.01
+      ],
+      "dev_brier": 0.2993803345526597
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        10.0,
+        0.1
+      ],
+      "dev_brier": 0.29555565081542456
+    },
+    {
+      "kind": "rbf",
+      "hp": [
+        10.0,
+        1.0
+      ],
+      "dev_brier": 0.285069920743789
+    }
+  ],
+  "controls": {
+    "gram_normalized_psd": true,
+    "planted_mse": 1.7362137885314383e-05,
+    "planted_constant_mse": 0.3893256227289748,
+    "future_target_invariance": true,
+    "frozen_labels_returns_match": true,
+    "chronology_assertions": true,
+    "fixed_selection_shuffle_mean_accuracy": 0.49751207729468605,
+    "fixed_selection_shuffle_pass": true
+  },
+  "arms": {
+    "all_six": {
+      "brier": 0.2764938404,
+      "accuracy": 0.5241545894,
+      "oracle_hit": null,
+      "regret": 0.0411459472
+    },
+    "expanding": {
+      "brier": 0.294112878,
+      "accuracy": 0.5024154589,
+      "oracle_hit": 0.0326086957,
+      "regret": 0.0587649848
+    },
+    "fixed": {
+      "brier": 0.2926106713,
+      "accuracy": 0.4987922705,
+      "oracle_hit": 0.1304347826,
+      "regret": 0.0572627781
+    },
+    "hindsight_oracle": {
+      "brier": 0.2353478932,
+      "accuracy": 0.6062801932,
+      "oracle_hit": 1.0,
+      "regret": 0.0
+    },
+    "quantum": {
+      "brier": 0.3018503608,
+      "accuracy": 0.4951690821,
+      "oracle_hit": 0.0434782609,
+      "regret": 0.0665024676
+    },
+    "random_pair_expectation": {
+      "brier": 0.2975969663,
+      "accuracy": 0.5074074074,
+      "oracle_hit": null,
+      "regret": 0.0622490731
+    },
+    "rbf": {
+      "brier": 0.2978162089,
+      "accuracy": 0.4975845411,
+      "oracle_hit": 0.0869565217,
+      "regret": 0.0624683157
+    },
+    "trailing12": {
+      "brier": 0.2970045327,
+      "accuracy": 0.5024154589,
+      "oracle_hit": 0.0543478261,
+      "regret": 0.0616566395
+    }
+  },
+  "rbf_minus_quantum_brier": -0.00403415190552872,
+  "block_bootstrap_95_ci": [
+    -0.014311151555138077,
+    0.0056593681040138346
+  ],
+  "verdict": "NO_QML_BENEFIT_DEMONSTRATED"
+}

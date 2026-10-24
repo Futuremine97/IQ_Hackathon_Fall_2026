@@ -194,6 +194,24 @@ All results are already in `results/`, so the notebook runs without the long job
 `qps/` library (`quantum.py` kernel / VQC / QAOA, `prophet_feats.py`, `panel.py`, `rl_agents.py`) ·
 `run_*.py` experiments · `results/` all outputs · `figures/` · `PREREG*.md` pre-registration.
 
+## Exploratory QML ensemble selection
+
+Open [`quantum_ensemble_selector.ipynb`](quantum_ensemble_selector.ipynb) for the
+executed experiment, result tables, plots, and reproducibility checks.
+
+[`run_ensemble_selector.py`](run_ensemble_selector.py) tests a four-qubit quantum
+kernel meta-selector that chooses one of 15 equal-weight pairs of the six saved
+forecasters. Hyperparameters use 2016–2018 only; expanding walk-forward evaluation
+uses 2019-01 through 2026-08 (92 months). The QML selector's rank-score Brier loss
+is 0.301850 versus RBF 0.297816 and all-six equal weight 0.276494 (lower is better).
+Top-9 accuracy is 49.52%, 49.76%, and 52.42%, respectively. QML finds the hindsight
+optimal pair in 4.35% of months; RBF does in 8.70%. The paired RBF-minus-QML Brier
+95% block-bootstrap interval is [−0.014311, +0.005659]: no demonstrated QML benefit.
+This reuses an already examined dataset and is exploratory, not a fresh holdout.
+See [`ENSEMBLE_PROTOCOL.md`](ENSEMBLE_PROTOCOL.md) and the
+[`full report`](results/ensemble_selector/REPORT.md). Run with the project's Python
+dependencies: `python run_ensemble_selector.py`.
+
 ## Limits
 
 One universe of 18 liquid ETFs, monthly horizon, one feature set; 10 bp per unit turnover; no taxes,
