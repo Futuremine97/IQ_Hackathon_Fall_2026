@@ -1,0 +1,62 @@
+{
+  "PC1_kernel_max_abs_diff": 3.552713678800501e-15,
+  "PC1_pass": true,
+  "PC2_adhoc_test_acc": 1.0,
+  "PC2_pass": true,
+  "PC4_cases": [
+    {
+      "instance": "maxcut5",
+      "p": 1,
+      "expect_qiskit": -0.11545196528259091,
+      "expect_ours": -0.1154519652825911,
+      "abs_diff": 1.942890293094024e-16,
+      "state_fidelity": 0.9999999999999991
+    },
+    {
+      "instance": "maxcut5",
+      "p": 2,
+      "expect_qiskit": 1.8961556281025658,
+      "expect_ours": 1.8961556281025702,
+      "abs_diff": 4.440892098500626e-15,
+      "state_fidelity": 0.9999999999999982
+    },
+    {
+      "instance": "maxcut5",
+      "p": 3,
+      "expect_qiskit": 0.5485790520137964,
+      "expect_ours": 0.548579052013798,
+      "abs_diff": 1.5543122344752192e-15,
+      "state_fidelity": 0.9999999999999976
+    },
+    {
+      "instance": "portfolio8",
+      "p": 1,
+      "expect_qiskit": 9.112428605556262,
+      "expect_ours": 9.112428605556293,
+      "abs_diff": 3.019806626980426e-14,
+      "state_fidelity": 0.9999999999999953
+    },
+    {
+      "instance": "portfolio8",
+      "p": 2,
+      "expect_qiskit": 12.985572190912654,
+      "expect_ours": 12.985572190912624,
+      "abs_diff": 3.019806626980426e-14,
+      "state_fidelity": 0.9999999999999982
+    },
+    {
+      "instance": "portfolio8",
+      "p": 3,
+      "expect_qiskit": 7.556065239226986,
+      "expect_ours": 7.55606523922701,
+      "abs_diff": 2.398081733190338e-14,
+      "state_fidelity": 0.9999999999999953
+    }
+  ],
+  "PC4_max_abs_diff": 3.019806626980426e-14,
+  "PC4_min_fidelity": 0.9999999999999953,
+  "PC4_pass": true,
+  "PC5_max_abs_diff": 8.881784197001252e-16,
+  "PC5_pass": true,
+  "timestamp": "2026-10-23 20:01:14 CDT"
+}
