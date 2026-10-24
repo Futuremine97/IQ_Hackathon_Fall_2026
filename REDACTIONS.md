@@ -17,6 +17,9 @@
   is the executed script with that arm removed; every other arm is an independent deterministic job. The
   data files are shipped gzipped; `data/SHA256SUMS` holds the hashes of the uncompressed files, and the
   script checks them after decompressing.
+  Spot check (2026-10-24): with the shipped script and the gzipped data, the data hashes verify and the
+  logistic-regression and gradient-boosting arms reproduce all 2,232 stored test scores exactly
+  (max |difference| = 0.0).
 * `PREREG_AMENDMENT_2_REGIME.md`, `PREREG_AMENDMENT_3_SECTOR.md` and `PREREG_AMENDMENT_4_POMDP_GRPO.md`:
   line 3 was an informal working note quoting the question that prompted each amendment. It was
   replaced by a neutral one-line scope sentence (and, in amendment 3, the heading words
