@@ -2,6 +2,12 @@
 
 **IQ Hackathon Fall 2026 (Beginners)**
 
+<p align="center"><img src="figures/coffee_machine.svg" width="100%" alt="Coffee in, optimized portfolio out: a cup of coffee is poured into a machine running Prophet, a 4-qubit quantum kernel and an 18-qubit QAOA, which prints an equal-weight 4-ETF basket; the receipt notes the backtest Sharpe ratio, QAOA 0.70 versus equal weight 0.88"></p>
+
+> Added on 2026-10-26, after the submission deadline: this picture
+> ([`figures/make_coffee_machine.py`](figures/make_coffee_machine.py)) and the MCP server in
+> [`mcp_server/`](mcp_server/README.md). The study, its results and the rest of this README are unchanged.
+
 ## Submission information
 
 | | |
@@ -211,6 +217,18 @@ This reuses an already examined dataset and is exploratory, not a fresh holdout.
 See [`ENSEMBLE_PROTOCOL.md`](ENSEMBLE_PROTOCOL.md) and the
 [`full report`](results/ensemble_selector/REPORT.md). Run with the project's Python
 dependencies: `python run_ensemble_selector.py`.
+
+## MCP server: the machine as tools (added 2026-10-26)
+
+[`mcp_server/`](mcp_server/README.md) exposes the pipeline to any MCP client (Claude Code, Claude Desktop,
+your own agent): `brew_portfolio` (coffee preset → risk aversion → QAOA basket, reported next to the
+exact optimum and equal weight), `prophet_forecast`, `qsvm_rank`, `list_universe` and `study_results`.
+
+```bash
+.venv/bin/pip install -r mcp_server/requirements.txt
+.venv/bin/python mcp_server/smoke_test.py   # end-to-end over stdio, offline
+claude mcp add q-brew -- "$PWD/.venv/bin/python" "$PWD/mcp_server/coffee_portfolio_server.py"
+```
 
 ## Limits
 
